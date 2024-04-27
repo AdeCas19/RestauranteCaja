@@ -1,0 +1,33 @@
+﻿@model IEnumerable<restaurante.Models.mesa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de mesas ocupadas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mesa
+            </th>
+            <th>
+                Cuenta
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.id_Mesa">Ver platos consumidos</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

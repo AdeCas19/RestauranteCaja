@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+<div id="miDiv" class="container">
+    <h2>Ticket</h2>
+    <div class="ticket-container" style="width: 300px;">
+        <div class="ticket" style="border: 1px solid #000; padding: 10px; margin-bottom: 10px;">
+            <div class="ticket-heading" style="font-weight: bold; border-bottom: 1px solid #000;">Producto</div>
+            <div class="ticket-heading" style="font-weight: bold; border-bottom: 1px solid #000;">Precio</div>
+            <div class="ticket-heading" style="font-weight: bold; border-bottom: 1px solid #000;">Cantidad</div>
+            <div class="ticket-heading" style="font-weight: bold; border-bottom: 1px solid #000;">Subtotal</div>
+            @foreach (var pedidoPorMesa in (IEnumerable<dynamic>)ViewData["listadoDePedidosPorMesa"])
+            {
+                <div>@pedidoPorMesa.nombrePlato</div>
+                <div>@pedidoPorMesa.cantidadPlato</div>
+                <div>@pedidoPorMesa.precio</div>
+                <div>@pedidoPorMesa.total</div>
+            }
+            <!-- Total -->
+            <div class="ticket-heading" style="font-weight: bold;">Total:</div>
+            <div class="ticket-heading"></div>
+            <div class="ticket-heading"></div>
+            <div class="ticket-heading total" style="font-weight: bold;">$@ViewData["montoTotalConsumido"]</div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

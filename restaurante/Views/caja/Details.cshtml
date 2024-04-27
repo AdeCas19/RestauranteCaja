@@ -1,0 +1,52 @@
+﻿@model restaurante.Models.mesa
+
+@{
+    ViewData["Title"] = "Platos consumidos por la mesa";
+}
+<script>
+    function mostrarDiv() {
+        // Obtener el div por su id
+        var divAMostrar = document.getElementById('miDiv');
+        // Hacer visible el div
+        divAMostrar.style.display = 'block';
+    }
+</script>
+
+<h1>Platos consumidos por la mesa</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Plato</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pedidoPorMesa in (IEnumerable<dynamic>)ViewData["listadoDePedidosPorMesa"])
+        {
+            <tr>
+                <td>@pedidoPorMesa.nombrePlato</td>
+                <td>@pedidoPorMesa.cantidadPlato</td>
+                <td>@pedidoPorMesa.precio</td>
+                <td>@pedidoPorMesa.total</td>
+                <td>   </td>
+            </tr>
+        }
+
+        <!-- Agrega más filas según sea necesario -->
+    </tbody>
+    <thead>
+        <tr>
+            <th>TOTAL</th>
+            <th></th>
+            <th></th>
+            <th>$@ViewData["montoTotalConsumido"]</th>
+        </tr>
+    </thead>
+</table>
+<div>
+    <a asp-action="Index" class="btn btn-dark text-white">Regresar</a>
+    <a asp-action="Edit" asp-route-id="@ViewData["idMesa"]" class="btn btn-warning text-white" target="_blank">Imprimir</a>
+</div>
